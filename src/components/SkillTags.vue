@@ -16,6 +16,8 @@ export default {
   methods: {
     removeTag (index) {
       this.selectedSkills.splice(index, 1)
+      this.$store.commit('removeSkills', index);
+      this.$store.commit('sumSkills');
     }
   }
 }
