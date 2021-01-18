@@ -5,7 +5,7 @@
     </transition>
     <transition-group v-else name="fade">
       <SkillList key="skills" />
-      <JobPostings key="jobs" />
+      <JobPostings key="jobs" :get-jobs="this.getJobs" />
     </transition-group>
   </div>
 </template>

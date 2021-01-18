@@ -48,8 +48,12 @@ export default {
   },
   methods: {
     createSkill() {
+      if (document.querySelector('input[name = "skill_level"]:checked') === null) {
+        return alert('Please make a skill aptitude before continuing');
+      }
+
       if (this.selectedSkills.some(e => e.skillName === document.getElementById('skill').value)) {
-        return alert('You have already selected this skillset before. Please select a different one.')
+        return alert('You have already selected this skillset. Please select a different one.')
       }
       
       if (this.selectedSkills.length <= 9) {
@@ -58,8 +62,13 @@ export default {
           "skillLevel": document.querySelector('input[name = "skill_level"]:checked').value
           }
         );
+        this.$store.commit('setSkills', {
+          skillName: document.getElementById('skill').value,
+          skillLevel: document.querySelector('input[name = "skill_level"]:checked').value
+        });
+        this.$store.commit('sumSkills');
       } else {
-        alert("You can only select 10 skills. Please clear one to select another.")
+        alert("You can only select 10 skills. Please remove at least one to add another.")
       }
     }
   },
